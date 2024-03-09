@@ -47,6 +47,16 @@ html {
   }
 }
 
+.preview {
+  color: rgb(0, 81, 255);
+  font-weight: bolder;
+
+  & p {
+    font-weight: bolder;
+    color: aqua;
+  }
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

@@ -7,6 +7,10 @@
 
     &__inputContainer {
         text-align: center;
+
+        & label {
+            color: aquamarine;
+        }
     }
 }
 
@@ -24,7 +28,7 @@
         width: 300px;
         color: bisque;
         font: bolder;
-        
+
     }
 
     &__button {
@@ -40,9 +44,9 @@
         background-position: center;
         background-size: cover;
 
-        &__paragraph {
+        &__paragraph {text-align: left;
             color: red;
-            transform: translateX(-186px) translateY(123px);
+            transform: translateX(2px) translateY(123px);
         }
     }
 
