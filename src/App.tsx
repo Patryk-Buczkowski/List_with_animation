@@ -22,12 +22,13 @@ export const App: React.FC = () => {
   };
 
   const addPerson = (person: Person) => {
+    person.id = listItems.length + 1;
     setLIstItems(current => current.concat(person));
   };
 
   const removePerson = (numberId: number) => {
     setLIstItems(current =>
-      current.filter(item => {        
+      current.filter(item => {
         return item.id !== numberId;
       }),
     );
@@ -35,10 +36,10 @@ export const App: React.FC = () => {
 
   const selectPerson = (person: Person) => {
     setPersonToRemove(person);
-  }
+  };
 
   const choosePerson = (numberId: number) => {
-    const foundPerson = people.find(item => item.id === numberId);
+    const foundPerson = listItems.find(item => item.id === numberId);
     if (foundPerson) {
       setSelPerson(foundPerson);
     }
@@ -75,7 +76,7 @@ export const App: React.FC = () => {
               <p>Id: {selPerson?.id} ✅</p>
               <p>Name: {selPerson?.name} ✅</p>
               <p>Last Name: {selPerson?.lastName} ✅</p>
-              <p>Age: {selPerson?.lastName} ✅</p>
+              <p>Age: {selPerson?.age} ✅</p>
               <p>Adult: {selPerson?.adult ? '✅' : '❌'}</p>
             </>
           ) : (

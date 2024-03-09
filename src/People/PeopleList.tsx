@@ -15,7 +15,7 @@ export const PeopleList: React.FC<PeopleListProps> = ({
   onRemove,
   onSelect,
   selectPerson,
-  personToRemove
+  personToRemove,
 }) => {
   const [visible, setVisible] = useState(false);
 
@@ -33,7 +33,7 @@ export const PeopleList: React.FC<PeopleListProps> = ({
 
   const handlePersonToRemove = (person: Person) => {
     selectPerson(person);
-  }
+  };
 
   return (
     <>
@@ -46,7 +46,6 @@ export const PeopleList: React.FC<PeopleListProps> = ({
                 onClick={() => {
                   setVisible(true);
                   handlePersonToRemove(person);
-                  
 
                   setTimeout(() => {
                     handlerRemove(person.id);

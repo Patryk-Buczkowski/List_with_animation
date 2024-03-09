@@ -12,13 +12,13 @@ export const PeopleForm: React.FC<Props> = ({ onDataReady }) => {
   const [lastName, setLastName] = useState('');
   const [age, setAge] = useState(0);
   const [adult, setAdult] = useState(false);
-  const id = people.reduce(
-    (maxId, person) => (person.id < maxId ? maxId : person.id),
-    0,
-  );
+  const [id, setId] = useState(people.length + 1);
 
   const handleSubmitForm: FormEventHandler = event => {
     event.preventDefault();
+    let findId = Math.max(...people.map(person => person.id)) + 1;
+
+    setId(findId);
 
     onDataReady({ id, name, lastName, age, adult });
     setAdult(false);
@@ -56,6 +56,7 @@ export const PeopleForm: React.FC<Props> = ({ onDataReady }) => {
         <input
           type="number"
           id="age"
+          min={0}
           name="age"
           value={age}
           onChange={event => setAge(+event.target.value)}
