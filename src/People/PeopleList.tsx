@@ -50,7 +50,7 @@ export const PeopleList: React.FC<PeopleListProps> = ({
                   setTimeout(() => {
                     handlerRemove(person.id);
                     setVisible(false);
-                  }, 4000);
+                  }, 3650);
                 }}
                 type="button"
                 className="peopleList__button"

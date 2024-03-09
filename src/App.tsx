@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
+import logo from './Media/grinning-face-svgrepo-com.svg';
 import './App.scss';
 import { people } from './People/people';
 import { PeopleList } from './People/PeopleList';

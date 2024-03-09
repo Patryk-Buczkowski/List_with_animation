@@ -27,16 +27,40 @@ export const PeopleForm: React.FC<Props> = ({ onDataReady }) => {
     setName('');
   };
 
+  const handleSetName = (event: React.ChangeEvent<HTMLInputElement>) => {
+    let newValue = event.target.value;
+    newValue = newValue.replace(/[^a-zA-Zа-яА-Я\s]/g, '');
+
+    setName(newValue);
+  }
+
+  const handleSetLastName = (event: React.ChangeEvent<HTMLInputElement>) => {
+    let newValue = event.target.value;
+    newValue = newValue.replace(/[^a-zA-Zа-яА-Я\s]/g, '');
+
+    setLastName(newValue);    
+  }
+
+  const handleSetAdult = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (age >= 18) {
+      setAdult(event.target.checked)
+    } else {
+      return null;
+    }
+    
+  }
+
   return (
     <form className="formPeople" onSubmit={handleSubmitForm}>
       <div className="formPeople__inputContainer">
         <label htmlFor="name">Name: </label>
         <input
           type="text"
+          placeholder='only en or ua letters'
           id="name"
           name="name"
           value={name}
-          onChange={event => setName(event.target.value)}
+          onChange={handleSetName}
         />
       </div>
 
@@ -46,8 +70,9 @@ export const PeopleForm: React.FC<Props> = ({ onDataReady }) => {
           type="text"
           id="LastName"
           name="LastName"
+          placeholder='only en or ua letters'
           value={lastName}
-          onChange={event => setLastName(event.target.value)}
+          onChange={handleSetLastName}
         />
       </div>
 
@@ -70,7 +95,7 @@ export const PeopleForm: React.FC<Props> = ({ onDataReady }) => {
           id="adult"
           name="adult"
           checked={adult}
-          onChange={event => setAdult(event.target.checked)}
+          onChange={handleSetAdult}
         />
       </div>
 
