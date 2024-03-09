@@ -11,6 +11,7 @@ export const App: React.FC = () => {
   const [visibleform, setVisibleform] = useState(true);
   const [listItems, setLIstItems] = useState(people);
   const [selPerson, setSelPerson] = useState<Person | null>(null);
+  const [personToRemove, setPersonToRemove] = useState<Person | null>(null);
 
   const handlerVisibleList = () => {
     setVisibleList(current => !current);
@@ -26,11 +27,15 @@ export const App: React.FC = () => {
 
   const removePerson = (numberId: number) => {
     setLIstItems(current =>
-      current.filter(item => {
+      current.filter(item => {        
         return item.id !== numberId;
       }),
     );
   };
+
+  const selectPerson = (person: Person) => {
+    setPersonToRemove(person);
+  }
 
   const choosePerson = (numberId: number) => {
     const foundPerson = people.find(item => item.id === numberId);
@@ -55,6 +60,8 @@ export const App: React.FC = () => {
             people={listItems}
             onRemove={removePerson}
             onSelect={choosePerson}
+            selectPerson={selectPerson}
+            personToRemove={personToRemove}
           />
         )}
         <button type="button" id="iconButton" onClick={handlerVisibleList}>

@@ -30,4 +30,21 @@
     &__button {
         border-radius: 30px;
     }
+
+    &__containerAnimation {
+        position: absolute;
+        transform: translateX(70%) translateY(-124%);
+        width: 500px;
+        height: 300px;
+        background-image: url(../Media/onRemoveAnimation.gif);
+        background-position: center;
+        background-size: cover;
+
+        &__paragraph {
+            color: red;
+            transform: translateX(-186px) translateY(123px);
+        }
+    }
+
+
 }
