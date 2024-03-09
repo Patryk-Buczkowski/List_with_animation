@@ -1,5 +1,6 @@
 html {
   margin: 0;
+  background-color: #282c34;
 }
 
 .App {
@@ -42,7 +43,6 @@ html {
   height: 30px;
 
   &:active {
-    // outline: 3px solid dodgerblue;
     border: 1px dotted black;
   }
 }
