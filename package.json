@@ -21,7 +21,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -44,7 +44,8 @@
   },
   "devDependencies": {
     "eslint": "^8.57.0",
-    "eslint-plugin-react": "^7.34.0",
-    "eslint-plugin-react-hooks": "^4.6.0"
+    "eslint-config-react-app": "^7.0.1",
+    "eslint-plugin-react": "*",
+    "eslint-plugin-react-hooks": "*"
   }
 }

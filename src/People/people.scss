@@ -1,0 +1,33 @@
+.main {
+    background-color: #282c34;
+}
+
+.formPeople {
+    margin: 0;
+
+    &__inputContainer {
+        text-align: center;
+    }
+}
+
+.peopleList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+
+    &__item {
+        display: flex;
+        justify-content: space-between;
+        list-style: none;
+        text-align: justify;
+        width: 300px;
+        color: bisque;
+        font: bolder;
+        
+    }
+
+    &__button {
+        border-radius: 30px;
+    }
+}
