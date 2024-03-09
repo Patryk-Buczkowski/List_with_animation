@@ -1,6 +1,7 @@
 {
   "name": "nowy_folder",
   "version": "0.1.0",
+  "homepage": "https://Patryk-Buczkowski.github.io/List_with_animation/",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
@@ -21,9 +22,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    
+    "deploy": "gh-pages -d build",
     "eject": "react-scripts eject"
   },
+  
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -46,6 +48,7 @@
     "eslint": "^8.57.0",
     "eslint-config-react-app": "^7.0.1",
     "eslint-plugin-react": "*",
-    "eslint-plugin-react-hooks": "*"
+    "eslint-plugin-react-hooks": "*",
+    "gh-pages": "^6.1.1"
   }
 }
