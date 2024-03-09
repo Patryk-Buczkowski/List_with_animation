@@ -32,23 +32,24 @@ export const PeopleForm: React.FC<Props> = ({ onDataReady }) => {
     newValue = newValue.replace(/[^a-zA-Zа-яА-Я\s]/g, '');
 
     setName(newValue);
-  }
+  };
 
   const handleSetLastName = (event: React.ChangeEvent<HTMLInputElement>) => {
     let newValue = event.target.value;
     newValue = newValue.replace(/[^a-zA-Zа-яА-Я\s]/g, '');
 
-    setLastName(newValue);    
-  }
+    setLastName(newValue);
+  };
 
   const handleSetAdult = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setAge(+event.target.value)
+    
     if (age >= 18) {
-      setAdult(event.target.checked)
+      setAdult(true);
     } else {
       return null;
     }
-    
-  }
+  };
 
   return (
     <form className="formPeople" onSubmit={handleSubmitForm}>
@@ -56,7 +57,7 @@ export const PeopleForm: React.FC<Props> = ({ onDataReady }) => {
         <label htmlFor="name">Name: </label>
         <input
           type="text"
-          placeholder='only en or ua letters'
+          placeholder="only en or ua letters"
           id="name"
           name="name"
           value={name}
@@ -70,7 +71,7 @@ export const PeopleForm: React.FC<Props> = ({ onDataReady }) => {
           type="text"
           id="LastName"
           name="LastName"
-          placeholder='only en or ua letters'
+          placeholder="only en or ua letters"
           value={lastName}
           onChange={handleSetLastName}
         />
@@ -84,11 +85,11 @@ export const PeopleForm: React.FC<Props> = ({ onDataReady }) => {
           min={0}
           name="age"
           value={age}
-          onChange={event => setAge(+event.target.value)}
+          onChange={handleSetAdult}
         />
       </div>
 
-      <div className="formPeople__inputContainer">
+      {/* <div className="formPeople__inputContainer">
         <label htmlFor="adult">Adult: </label>
         <input
           type="checkbox"
@@ -97,7 +98,7 @@ export const PeopleForm: React.FC<Props> = ({ onDataReady }) => {
           checked={adult}
           onChange={handleSetAdult}
         />
-      </div>
+      </div> */}
 
       <button>Add 😀 to 📜</button>
     </form>
