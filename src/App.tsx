@@ -27,6 +27,9 @@ export const App: React.FC = () => {
   };
 
   const removePerson = (numberId: number) => {
+    if (selPerson?.id === numberId) {
+      setSelPerson(null);
+    }
     setLIstItems(current =>
       current.filter(item => {
         return item.id !== numberId;
