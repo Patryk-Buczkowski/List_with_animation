@@ -1,92 +1,85 @@
-import React, { useState } from 'react';
-import logo from './Media/grinning-face-svgrepo-com.svg';
-import './App.scss';
-import { people } from './People/people';
-import { PeopleList } from './People/PeopleList';
-import { PeopleForm } from './People/PeopleForm';
-import { Person } from './Types/Person';
+import { useState } from "react";
+import "./App.css";
+import React from "react";
 
-export const App: React.FC = () => {
-  const [visibleList, setVisibleList] = useState(true);
-  const [visibleform, setVisibleform] = useState(true);
-  const [listItems, setLIstItems] = useState(people);
-  const [selPerson, setSelPerson] = useState<Person | null>(null);
-  const [personToRemove, setPersonToRemove] = useState<Person | null>(null);
-
-  const handlerVisibleList = () => {
-    setVisibleList(current => !current);
-  };
-
-  const handlerVisibleForm = () => {
-    setVisibleform(current => !current);
-  };
-
-  const addPerson = (person: Person) => {
-    person.id = listItems.length + 1;
-    setLIstItems(current => current.concat(person));
-  };
-
-  const removePerson = (numberId: number) => {
-    if (selPerson?.id === numberId) {
-      setSelPerson(null);
-    }
-    setLIstItems(current =>
-      current.filter(item => {
-        return item.id !== numberId;
-      }),
-    );
-  };
-
-  const selectPerson = (person: Person) => {
-    setPersonToRemove(person);
-  };
-
-  const choosePerson = (numberId: number) => {
-    const foundPerson = listItems.find(item => item.id === numberId);
-    if (foundPerson) {
-      setSelPerson(foundPerson);
-    }
-  };
-
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-      </header>
-      <main className="main">
-        {visibleform && <PeopleForm onDataReady={addPerson} />}
-        <button type="button" id="iconButton" onClick={handlerVisibleForm}>
-          💥BOOM--form
-        </button>
-
-        {visibleList && (
-          <PeopleList
-            people={listItems}
-            onRemove={removePerson}
-            onSelect={choosePerson}
-            selectPerson={selectPerson}
-            personToRemove={personToRemove}
-          />
-        )}
-        <button type="button" id="iconButton" onClick={handlerVisibleList}>
-          💥BOOM--list
-        </button>
-
-        <div className="preview">
-          CLICKED PERSON
-          {selPerson ? (
-            <>
-              <p>Id: {selPerson?.id} ✅</p>
-              <p>Name: {selPerson?.name} ✅</p>
-              <p>Last Name: {selPerson?.lastName} ✅</p>
-              <p>Age: {selPerson?.age} ✅</p>
-              <p>Adult: {selPerson?.adult ? '✅' : '❌'}</p>
-            </>
-          ) : (
-            <p>No person selected</p>
-          )}
+const StarRating = ({ tabIndex, rating = 0, setStarRate }) => {
+    return (
+        <div>
+            {Array.from({ length: 5 }, (_, index) => (
+                <span onClick={() => setStarRate(tabIndex, index + 1)} key={index}>
+                    {index < rating ? "⭐" : "☆"}
+                </span>
+            ))}
         </div>
-      </main>
-    </div>
-  );
+    );
 };
+
+function Tab({ schoolName, schoolLogo, firstName, lastName, children }) {
+    return (
+        <div>
+            <h1>{schoolName}</h1>
+            <img src={schoolLogo} alt="school logo" />
+
+            <h3>firstName</h3>
+            <p>{firstName}</p>
+
+            <h3>lastName</h3>
+            <p>{lastName}</p>
+
+            {children}
+        </div>
+    );
+}
+
+const arr = [
+    {
+        schoolName: "School 1",
+        schoolLogo: "url",
+        firstName: "John",
+        lastName: "Doe",
+    },
+    {
+        schoolName: "School 2",
+        schoolLogo: "url",
+        firstName: "Jane",
+        lastName: "Doe",
+    },
+    {
+        schoolName: "School 3",
+        schoolLogo: "url",
+        firstName: "Jack",
+        lastName: "Doe",
+    },
+];
+
+const App = () => {
+    const [currentTab, setCurrentTab] = useState(0);
+    const [starRate, setStarRate] = useState([]);
+    const item = arr.at(currentTab);
+
+    function handleSetStarRate(index, rating) {
+        setStarRate(prev => {
+            const newRating = [...prev];
+            newRating[index] = rating;
+            return newRating;
+        });
+    }
+
+    return (
+        <div>
+            <Tab
+                schoolName={item.schoolName}
+                schoolLogo={item.schoolLogo}
+                firstName={item.firstName}
+                lastName={item.lastName}
+            >
+                <StarRating setStarRate={handleSetStarRate} tabIndex={currentTab} rating={starRate[currentTab]} />
+            </Tab>
+
+            {currentTab > 0 && <button onClick={() => setCurrentTab(prev => prev - 1)}>Previous</button>}
+            {currentTab < arr.length - 1 && <button onClick={() => setCurrentTab(prev => prev + 1)}>Next</button>}
+        </div>
+    );
+};
+
+export default App;
